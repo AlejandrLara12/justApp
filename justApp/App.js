@@ -1,18 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// import React, { Component } from 'react'; // that is what they is in Documentation
+import { StyleSheet, Text, View, Image, AppRegistry } from 'react-native';
 
 export default class App extends React.Component {
   render() {
-    let friends = ['oscar','moises','deba','yumi'];
+
+    let pic = {
+      uri: 'https://www.yamaha-motor.ca/images/pages/products/units/MC/large/2017_FZ09A_red_3_l.png'
+    };
 
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <Text>This thing is super COOL</Text>
-        <Text>Just trying to get it to work.</Text>
-        { friends.map((friend,index) => <Text key={index.toString()} >{friend}</Text>) }
+        <Image source={pic}  style={{ width: 300, height: 250 }} />
       </View>
     );
   }
