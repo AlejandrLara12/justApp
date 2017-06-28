@@ -2,16 +2,24 @@ import React from 'react';
 // import React, { Component } from 'react'; // that is what they is in Documentation
 import { StyleSheet, Text, View, Image, AppRegistry } from 'react-native';
 
+// classes
+class Greeting extends React.Component{
+  render(){
+    return (
+      <Text>Hello {this.props.name}!</Text>  
+    );
+  };
+}
+
+
 export default class App extends React.Component {
   render() {
-
-    let pic = {
-      uri: 'https://www.yamaha-motor.ca/images/pages/products/units/MC/large/2017_FZ09A_red_3_l.png'
-    };
-
     return (
       <View style={styles.container}>
-        <Image source={pic}  style={{ width: 300, height: 250 }} />
+        <Text>Uses this.props.name</Text>
+        <Text>It also create a class named in this case Greeting</Text>
+        <Greeting name="Mireya"/>
+        <Greeting name="Lara"/>
       </View>
     );
   }
@@ -25,3 +33,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+
+/**
+ * Notes:
+ * 
+ * Props might be with in the tag
+ */
