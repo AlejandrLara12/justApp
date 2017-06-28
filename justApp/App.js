@@ -1,13 +1,13 @@
 import React from 'react';
 // import React, { Component } from 'react'; // that is what they is in Documentation
-import { StyleSheet, Text, View, AppRegistry } from 'react-native';
+import { StyleSheet, Text, View, AppRegistry, Button } from 'react-native';
 
-// classes
+//  Classes   ========================================================================
 class Blink extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {showText: true};
+    this.state = { showText: true };
 
     // Toggle the state every second
     let timer = 500;
@@ -19,22 +19,57 @@ class Blink extends React.Component{
   };
 
   render(){
-
     let display = this.state.showText ? this.props.text : ' lol ';
-
     return (
       <Text>{display}</Text>  
     );
   };
 }
 
+class ButtonCounter extends React.Component{
 
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      count: 0
+    };
+  };
+
+  
+  addCounter(){
+    console.log('Pressed ' + this.state.count.toString() );
+    this.state.count++;
+  }
+
+  render(){
+    return (
+      <Button
+        title="Please"
+        style={{fontSize: 20, color: 'green'}}
+        styleDisabled={{color: 'red'}}
+        color="#841584"
+        onPress={() => this.addCounter()}
+        />
+    );
+  };
+
+}
+
+
+
+
+
+
+//  Main Program   ========================================================================
 export default class App extends React.Component {
+
   render() {
     return (
       <View style={styles.container}>
-        <Blink text='text: is a prop of the <Text> component' />
-        <Blink text='That is cool.' />
+        <Text>Button clicks</Text>
+        <Blink text="12" />
+        <Text>times</Text>
+        <ButtonCounter />
       </View>
     );
   }
