@@ -1,12 +1,29 @@
 import React from 'react';
 // import React, { Component } from 'react'; // that is what they is in Documentation
-import { StyleSheet, Text, View, Image, AppRegistry } from 'react-native';
+import { StyleSheet, Text, View, AppRegistry } from 'react-native';
 
 // classes
-class Greeting extends React.Component{
+class Blink extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {showText: true};
+
+    // Toggle the state every second
+    let timer = 500;
+    setInterval(() => {
+      this.setState(previousState => {
+        return { showText: !previousState.showText };
+      });
+    },timer);
+  };
+
   render(){
+
+    let display = this.state.showText ? this.props.text : ' lol ';
+
     return (
-      <Text>Hello {this.props.name}!</Text>  
+      <Text>{display}</Text>  
     );
   };
 }
@@ -16,10 +33,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Uses this.props.name</Text>
-        <Text>It also create a class named in this case Greeting</Text>
-        <Greeting name="Mireya"/>
-        <Greeting name="Lara"/>
+        <Blink text='text: is a prop of the <Text> component' />
+        <Blink text='That is cool.' />
       </View>
     );
   }
@@ -36,7 +51,10 @@ const styles = StyleSheet.create({
 
 
 /**
- * Notes:
- * 
- * Props might be with in the tag
+  Notes: 
+  
+  - Look at redux
+
+  - React.Component API
+
  */
