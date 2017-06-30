@@ -2,78 +2,55 @@ import React from 'react';
 // import React, { Component } from 'react'; // that is what they is in Documentation
 import { StyleSheet, Text, View, AppRegistry, Button } from 'react-native';
 
-//  Classes   ========================================================================
-class Blink extends React.Component{
-
-  constructor(props){
-    super(props);
-    this.state = { showText: true };
-
-    // Toggle the state every second
-    let timer = 500;
-    setInterval(() => {
-      this.setState(previousState => {
-        return { showText: !previousState.showText };
-      });
-    },timer);
-  };
-
-  render(){
-    let display = this.state.showText ? this.props.text : ' lol ';
-    return (
-      <Text>{display}</Text>  
-    );
-  };
-}
-
-class ButtonCounter extends React.Component{
-
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      count: 0
-    };
-  };
-
-  
-  addCounter(){
-    console.log('Pressed ' + this.state.count.toString() );
-    this.state.count++;
-  }
-
-  render(){
-    return (
-      <Button
-        title="Please"
-        style={{fontSize: 20, color: 'green'}}
-        styleDisabled={{color: 'red'}}
-        color="#841584"
-        onPress={() => this.addCounter()}
-        />
-    );
-  };
-
-}
+//  Classes   ---------------------
+import { Blink } from './components/Blink.js';
+import { List } from './components/List.js';
 
 
 
-
-
-
-//  Main Program   ========================================================================
+//  Main Program   ---------------------
 export default class App extends React.Component {
 
+  constructor(){
+    super();
+    this.state = {
+      count: 0,
+      numbsTest: ['one','two','three']
+    };
+    this.addOne = this.addOne.bind(this);
+  }
+
+  addOne(){
+    console.log('Pressed count: ' + this.state.count );
+    //let newCount = ++this.state.count;
+    //console.log('Pressed newCount: ' + newCount );
+    //newCount++;
+    this.setState({ count: ++this.state.count });
+  }
+
+
   render() {
+
     return (
       <View style={styles.container}>
         <Text>Button clicks</Text>
-        <Blink text="12" />
+        <Blink text={this.state.count}/>
+        <Text>{this.state.count}</Text>
         <Text>times</Text>
-        <ButtonCounter />
+        <Button onPress={this.addOne} />
+        <Button title="This is cool" onPress={this.addOne} />
+        
+        <List type='Living Musician'>
+          <Text>Sachiko M</Text>
+          <Text>Harvey Sid Fisher</Text>
+        </List>
+
       </View>
     );
   }
 }
+
+Button.defaultProps = { title: "Add one" };
 
 const styles = StyleSheet.create({
   container: {
@@ -91,5 +68,14 @@ const styles = StyleSheet.create({
   - Look at redux
 
   - React.Component API
+
+  - ES6 Intro: https://hacks.mozilla.org/2015/08/es6-in-depth-modules/
+
+
+  New props
+
+  this.props.children
+
+  ClassName.defaultProps = { propOne: 'Cool' };
 
  */
