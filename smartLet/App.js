@@ -1,5 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, Button, View, Picker, TextInput, Switch, Keyboard, SlidingView, KeyboardAvoidingView } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  Button, 
+  View, 
+  Picker, 
+  TextInput, 
+  Switch, 
+  Keyboard, 
+  SlidingView, 
+  KeyboardAvoidingView,
+  Navigator,
+  Component 
+} from 'react-native';
+
+import scarlet from './app/scarlet';
+
 
 export default class App extends React.Component {
 
@@ -31,12 +47,17 @@ export default class App extends React.Component {
     }
   };
 
+  /*
+    <KeyboardAvoidingView 
+      style={styles.container}
+      //behavior="padding"
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={false}
+  */
   render() {
     return (
-      <KeyboardAvoidingView 
-      style={styles.container}
-      behavior="padding"
-      >
+      <View style={styles.container} >
         <Text>La temperatura es: {this.state.temp} ºC</Text>
 
         <Switch
@@ -57,7 +78,7 @@ export default class App extends React.Component {
           onPress={this.handleButtonPress}
         />
 
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
@@ -70,3 +91,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
